@@ -5,9 +5,25 @@ compiler:
   - gcc
 os:
   - linux
+before_install:
+  # TODO, Put this into a build script
+  - sudo apt-get update
+  - sudo apt-get -y install apt-transport-https ca-certificates gnupg software-properties-common wget
+  - sudo apt -y install software-properties-common
+  - wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+  - sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+  - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update
+  - sudo apt-get -y install cmake 
+  - sudo apt -y install gcc-9 g++-9
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
+  - sudo update-alternatives --config gcc
 script:
-  - g++ src/main.cpp
-  - ./a.out
+  - cmake --version
+  - ninja --version
+  - cmake -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-9 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-9 -B. -S. -G Ninja
+  - cmake --build .
+  - ./cpp-travis-ci
 branches:
   only:
   - master
