@@ -2,7 +2,10 @@
 - [Test List](#test-list)
   - [CMake Command](#cmake-command)
 
-# cpp-travis-ci
+# cpp-travis-ci 
+
+[![Build Status](https://travis-ci.org/niketnaidu-brt/cpp-travis-ci.svg?branch=master)](https://travis-ci.org/niketnaidu-brt/cpp-travis-ci)
+
 Demo Travis CI
 
 # Test List
