@@ -22,7 +22,7 @@ before_install:
 script:
   - cmake --version
   - ninja --version
-  - cmake -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-9 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-9 -B. -S. -G Ninja
+  - cmake -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc-9 -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++-9 -B . -S . -G Ninja
   - cmake --build .
   - ./cpp-travis-ci
 branches:
