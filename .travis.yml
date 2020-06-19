@@ -1,0 +1,14 @@
+language: cpp
+sudo: required
+dist: bionic
+compiler:
+  - gcc
+os:
+  - linux
+script:
+  - g++ src/main.cpp
+  - ./a.out
+branches:
+  only:
+  - master
+  - test
